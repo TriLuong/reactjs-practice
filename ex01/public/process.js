@@ -1,7 +1,18 @@
 class HelloWorld extends React.Component{
     render(){
         return(
-            <h1 className="yellowColor">Hello World!!!</h1>
+            <div>
+                <h1 className="yellowColor">Hello World!!!</h1>
+                <HiEveryone></HiEveryone>
+            </div>
+        );
+    }
+}
+
+class HiEveryone extends React.Component{
+    render(){
+        return(
+            <h3> Hi Everyone</h3>
         );
     }
 }
