@@ -2,6 +2,27 @@ function getName(name1){
     alert(name1);
 }
 
+class InputTag extends React.Component{
+    showtt(){
+        var text = this.textInput.value;
+        alert(text);
+    }
+
+    constructor(props){
+        super(props);
+        this.showtt = this.showtt.bind(this);
+    }
+
+    render(){
+        return(
+            <div>
+                <input type="text" ref={(input)=>{this.textInput=input}}></input>
+                <button onClick={this.showtt}>Done</button>
+            </div>
+        );
+    }
+}
+
 class HelloWorld extends React.Component{
     callgetName(){
         getName(this.props.name);
@@ -63,11 +84,14 @@ class HiEveryone extends React.Component{
 
 ReactDOM.render(
     <div>
+        <InputTag></InputTag>
+        <hr></hr>
         <h1>Hello World!!!</h1>
         <hr></hr>
         <HelloWorld name="ABC" number="123" TotalNumber="30" TotalNumber2="122">Type props children here 1</HelloWorld>
         <hr></hr>
         <HelloWorld name="CDF" number="456" TotalNumber="40" TotalNumber2="200">Type props children here 2</HelloWorld>
+        
     </div>
     , document.getElementById("root")
 );
