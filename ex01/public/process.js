@@ -1,10 +1,18 @@
 class HelloWorld extends React.Component{
+    getInfor(){
+        alert(this.props.children);
+    }
+    constructor(props){
+        super(props);
+        this.getInfor = this.getInfor.bind(this);
+    }
     render(){
         return(
             <div>
                 <h1 className="yellowColor">{this.props.name} - {this.props.number}</h1>
                 <p>{this.props.children}</p>
                 <HiEveryone></HiEveryone>
+                <button onClick={this.getInfor}>Click</button>
             </div>
         );
     }
