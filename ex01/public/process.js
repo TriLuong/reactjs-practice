@@ -9,21 +9,35 @@ class HelloWorld extends React.Component{
     getInfor(){
         alert(this.props.children);
     }
+
+    increaseNumber(){
+        this.setState({TotalNumber: this.state.TotalNumber + 1});
+    }
+   
     constructor(props){
         super(props);
         this.getInfor = this.getInfor.bind(this);
         this.callgetName = this.callgetName.bind(this);
+        
+        this.state ={
+            TotalNumber: 20
+        }
+        this.increaseNumber = this.increaseNumber.bind(this);
     }
+
     render(){
         return(
             <div>
                 <h1 className="yellowColor">{this.props.name} - {this.props.number}</h1>
                 <p>{this.props.children}</p>
+                <p>Total Number: {this.state.TotalNumber}</p>
                 <HiEveryone></HiEveryone>
                 {/* Option 1 */}
                 <button onClick={this.callgetName}>Click</button>
                 {/* Option 2 */}
                 <button onClick={()=>{this.callgetName(this.props.name)}}>Click 2</button>
+                
+                <button onClick={this.increaseNumber}>Increase Number</button>
             </div>
         );
     }
