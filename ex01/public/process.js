@@ -11,7 +11,13 @@ class HelloWorld extends React.Component{
     }
 
     increaseNumber(){
-        this.setState({TotalNumber: this.state.TotalNumber + 1});
+        this.state.TotalNumber = parseInt(this.state.TotalNumber) + 1;
+        this.setState(this.state);
+    }
+
+    increaseNumber2(){
+        this.state.TotalNumber2 = parseInt(this.state.TotalNumber2) + 1;
+        this.setState(this.state);
     }
    
     constructor(props){
@@ -20,9 +26,11 @@ class HelloWorld extends React.Component{
         this.callgetName = this.callgetName.bind(this);
         
         this.state ={
-            TotalNumber: 20
+            TotalNumber: this.props.TotalNumber,
+            TotalNumber2: this.props.TotalNumber2,
         }
         this.increaseNumber = this.increaseNumber.bind(this);
+        this.increaseNumber2 = this.increaseNumber2.bind(this);
     }
 
     render(){
@@ -31,6 +39,7 @@ class HelloWorld extends React.Component{
                 <h1 className="yellowColor">{this.props.name} - {this.props.number}</h1>
                 <p>{this.props.children}</p>
                 <p>Total Number: {this.state.TotalNumber}</p>
+                <p>Total Number2: {this.state.TotalNumber2}</p>
                 <HiEveryone></HiEveryone>
                 {/* Option 1 */}
                 <button onClick={this.callgetName}>Click</button>
@@ -38,6 +47,7 @@ class HelloWorld extends React.Component{
                 <button onClick={()=>{this.callgetName(this.props.name)}}>Click 2</button>
                 
                 <button onClick={this.increaseNumber}>Increase Number</button>
+                <button onClick={this.increaseNumber2}>Increase Number 2</button>
             </div>
         );
     }
@@ -55,9 +65,9 @@ ReactDOM.render(
     <div>
         <h1>Hello World!!!</h1>
         <hr></hr>
-        <HelloWorld name="ABC" number="123" >Type props children here 1</HelloWorld>
+        <HelloWorld name="ABC" number="123" TotalNumber="30" TotalNumber2="122">Type props children here 1</HelloWorld>
         <hr></hr>
-        <HelloWorld name="CDF" number="456">Type props children here 2</HelloWorld>
+        <HelloWorld name="CDF" number="456" TotalNumber="40" TotalNumber2="200">Type props children here 2</HelloWorld>
     </div>
     , document.getElementById("root")
 );
