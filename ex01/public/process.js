@@ -3,6 +3,7 @@ class HelloWorld extends React.Component{
         return(
             <div>
                 <h1 className="yellowColor">{this.props.name} - {this.props.number}</h1>
+                <p>{this.props.children}</p>
                 <HiEveryone></HiEveryone>
             </div>
         );
@@ -20,8 +21,10 @@ class HiEveryone extends React.Component{
 ReactDOM.render(
     <div>
         <h1>Hello World!!!</h1>
-        <HelloWorld name="ABC" number="123" ></HelloWorld>
-        <HelloWorld name="CDF" number="456"/>
+        <hr></hr>
+        <HelloWorld name="ABC" number="123" >Type props children here 1</HelloWorld>
+        <hr></hr>
+        <HelloWorld name="CDF" number="456">Type props children here 2</HelloWorld>
     </div>
     , document.getElementById("root")
 );
