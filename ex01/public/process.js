@@ -107,6 +107,7 @@ class Com extends React.Component{
 
 class Album extends React.Component{
     nextImg(){
+        this.state.flag = 0;
         this.state.image = parseInt(this.state.image) + 1;
         if(parseInt(this.state.image)> 4){
             this.state.image = 1;
@@ -115,6 +116,16 @@ class Album extends React.Component{
     }
 
     previousImg(){
+        this.state.flag = 0;
+        this.state.image = parseInt(this.state.image) - 1;
+        if(parseInt(this.state.image) < 1){
+            this.state.image = 4;
+        }
+        this.setState(this.state);
+    }
+
+    autoChange(){
+        this.state.flag = ~(parseInt(this.state.flag));
         this.state.image = parseInt(this.state.image) - 1;
         if(parseInt(this.state.image) < 1){
             this.state.image = 4;
@@ -126,10 +137,13 @@ class Album extends React.Component{
         super(props);
         this.state = {
             image: 1,
+            flag: 0,
         }
         
         this.nextImg = this.nextImg.bind(this);
         this.previousImg = this.previousImg.bind(this);
+        this.autoChange = this.autoChange.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
     render (){
         return (
@@ -138,8 +152,14 @@ class Album extends React.Component{
                 <hr></hr>
                 <button onClick={this.nextImg}>Next</button>
                 <button onClick={this.previousImg}>Previous</button>
+                <button onClick={this.autoChange}>Auto</button>
             </div>
         );
+    }
+    componentDidMount(){
+            setInterval(this.autoChange, 1000);
+        
+            
     }
 }
 
