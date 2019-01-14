@@ -4,7 +4,7 @@ function getName(name1){
 
 class InputTag extends React.Component{
     showtt(){
-        var text = this.textInput.value;
+        var text = this.textInput.value
         alert(text);
     }
 
@@ -82,8 +82,32 @@ class HiEveryone extends React.Component{
     }
 }
 
+class Com extends React.Component{
+    add(){
+        this.state.number3 = parseInt(this.state.number3) + 1;
+        this.setState(this.state);
+    }
+
+    constructor(props){
+        super(props);
+        this.state = {
+            number3: 5,
+        }
+        this.add = this.add.bind(this);
+    }
+    render(){
+        return(
+            <div>
+                <button onClick={this.add}> Hello {this.state.number3}</button>
+            </div>
+        );
+
+    }
+}
+
 ReactDOM.render(
     <div>
+        <Com></Com>
         <InputTag></InputTag>
         <hr></hr>
         <h1>Hello World!!!</h1>
