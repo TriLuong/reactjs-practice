@@ -167,6 +167,7 @@ class Note extends React.Component{
     render(){
         return(
             <div>
+                <img src={this.props.src}></img>
                 <p>{this.props.children}</p>
             </div>
         )
@@ -175,7 +176,10 @@ class Note extends React.Component{
 
 class List extends React.Component{
     addElement(){
-        this.state.mang.push("Iniesta","Xavi");
+        //Add image at the botom
+        this.state.mangPlus.push({src: "images/img4.png", content: "Say ya"});
+        this.state.mangPlus.unshift({src: "images/img2.png", content: "See you"});
+        
         this.setState(this.state);
     }
 
@@ -183,6 +187,11 @@ class List extends React.Component{
         super(props);
         this.state = {
             mang: ["Lionel", "Messi", "Barcelona"],
+            mangPlus: [
+                {src: "images/img1.png", content: "Hello"},
+                {src: "images/img2.png", content: "Hi"},
+                {src: "images/img3.png", content: "Bye"},
+            ]
         }
 
         this.addElement = this.addElement.bind(this);
@@ -193,8 +202,8 @@ class List extends React.Component{
             <div>
                 <button onClick={this.addElement}>Add</button>
                 {
-                    this.state.mang.map(function(note, index){
-                        return <Note key={index}>{note}</Note>
+                    this.state.mangPlus.map(function(note, index){
+                        return <Note key={index} src={note.src}>{note.content}</Note>
                     })
                 }
             </div>
@@ -205,6 +214,7 @@ class List extends React.Component{
 ReactDOM.render(
     <div>
         <List></List>
+        <hr></hr>
         <Album></Album>
         <Com></Com>
         <InputTag></InputTag>
