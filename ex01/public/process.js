@@ -105,8 +105,47 @@ class Com extends React.Component{
     }
 }
 
+class Album extends React.Component{
+    nextImg(){
+        this.state.image = parseInt(this.state.image) + 1;
+        if(parseInt(this.state.image)> 4){
+            this.state.image = 1;
+        }
+        this.setState(this.state);
+    }
+
+    previousImg(){
+        this.state.image = parseInt(this.state.image) - 1;
+        if(parseInt(this.state.image) < 1){
+            this.state.image = 4;
+        }
+        this.setState(this.state);
+    }
+
+    constructor(props){
+        super(props);
+        this.state = {
+            image: 1,
+        }
+        
+        this.nextImg = this.nextImg.bind(this);
+        this.previousImg = this.previousImg.bind(this);
+    }
+    render (){
+        return (
+            <div className="div-album">
+                <img src={"images/img" + this.state.image+".png"}></img>
+                <hr></hr>
+                <button onClick={this.nextImg}>Next</button>
+                <button onClick={this.previousImg}>Previous</button>
+            </div>
+        );
+    }
+}
+
 ReactDOM.render(
     <div>
+        <Album></Album>
         <Com></Com>
         <InputTag></InputTag>
         <hr></hr>

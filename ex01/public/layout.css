@@ -1,0 +1,13 @@
+.div-album{
+    width: 200px;
+    background-color: yellow;
+    margin: 5px;
+    padding: 5px;
+    border: solid 1px green;
+}
+img{
+    max-width: 200px;
+    max-height: 200px;
+    width: 200px;
+    height: 200px;
+}
