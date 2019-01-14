@@ -163,8 +163,48 @@ class Album extends React.Component{
     }
 }
 
+class Note extends React.Component{
+    render(){
+        return(
+            <div>
+                <p>{this.props.children}</p>
+            </div>
+        )
+    }
+}
+
+class List extends React.Component{
+    addElement(){
+        this.state.mang.push("Iniesta","Xavi");
+        this.setState(this.state);
+    }
+
+    constructor(props){
+        super(props);
+        this.state = {
+            mang: ["Lionel", "Messi", "Barcelona"],
+        }
+
+        this.addElement = this.addElement.bind(this);
+    }
+
+    render(){
+        return(
+            <div>
+                <button onClick={this.addElement}>Add</button>
+                {
+                    this.state.mang.map(function(note, index){
+                        return <Note key={index}>{note}</Note>
+                    })
+                }
+            </div>
+        );
+    }
+}
+
 ReactDOM.render(
     <div>
+        <List></List>
         <Album></Album>
         <Com></Com>
         <InputTag></InputTag>
