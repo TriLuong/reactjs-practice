@@ -7,14 +7,15 @@ app.set("view engine", "ejs");
 app.set("views","./views");
 app.listen(4200);
 
-var array = ["Embedded","iOS","Android"];
+var arrayDefault = ["Embedded","iOS","Android"];
+var array = arrayDefault;
 
 app.get("/", function(req, res){
   res.render("home");
 });
 
 app.post('/getNotes',function(req, res){
-  res.send(array);
+  res.send(arrayDefault);
 });
 
 app.post('/add', parser, function(req, res){
@@ -27,4 +28,14 @@ app.post('/delete', parser, function(req, res){
   var id = req.body.idDelete;
   array.splice(id, 1);
   res.send(array);
+});
+
+app.post('/update', parser, function(req, res){
+  var id = req.body.idEdit;
+  array[id] = req.body.content;
+  res.send(array);
+});
+
+app.post('/reset', function(req, res){
+  res.send(arrayDefault);
 });
